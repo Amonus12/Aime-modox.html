@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aime Modox | Ultimate Learning Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="gradient-orb orb-4"></div>
+        <div class="noise-overlay"></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-dot"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                    <div class="logo-pulse"></div>
+                </div>
+                <span>Aime Modox</span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#" class="nav-link active">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="challenges.html" class="nav-link">
+                    <i class="fas fa-trophy"></i>
+                    <span>Challenges</span>
+                    <span class="badge-new">🔥</span>
+                </a>
+                <a href="about.html" class="nav-link">
+                    <i class="fas fa-user-circle"></i>
+                    <span>About</span>
+                </a>
+                <button class="login-btn" id="loginNavBtn">
+                    <i class="fas fa-crown"></i>
+                    <span>Get Premium</span>
+                </button>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-text">✨ Trusted by 1M+ Learners</span>
+                    <span class="badge-icon"><i class="fas fa-globe"></i></span>
+                </div>
+                <h1 class="hero-title">
+                    Unlock 
+                    <span class="gradient-text gradient-1">unlimited</span>
+                    <br>learning resources
+                </h1>
+                <p class="hero-subtitle">
+                    50,000+ FREE courses, ebooks & tutorials — curated for developers & security experts
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">📚</div>
+                        <div class="stat-info">
+                            <h3>50K+</h3>
+                            <p>Courses</p>
+                        </div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-info">
+                            <h3>100+</h3>
+                            <p>Categories</p>
+                        </div>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🌍</div>
+                        <div class="stat-info">
+                            <h3>1M+</h3>
+                            <p>Learners</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-buttons">
+                    <button class="btn-primary btn-glow" id="heroSearchBtn">
+                        <i class="fas fa-search"></i>
+                        <span>Explore Resources</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <a href="challenges.html" class="btn-secondary">
+                        <i class="fas fa-trophy"></i>
+                        <span>Join Challenges</span>
+                        <i class="fas fa-fire"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-floating-elements">
+                <div class="floating-card float-1">
+                    <i class="fas fa-code"></i>
+                    <span>Python</span>
+                </div>
+                <div class="floating-card float-2">
+                    <i class="fab fa-js"></i>
+                    <span>JavaScript</span>
+                </div>
+                <div class="floating-card float-3">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Security</span>
+                </div>
+                <div class="floating-card float-4">
+                    <i class="fas fa-brain"></i>
+                    <span>AI/ML</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">
+                        <i class="fas fa-crown"></i>
+                        <span>Why Choose Us</span>
+                    </div>
+                    <h2>Supercharge Your <span class="gradient-text gradient-2">Learning Journey</span></h2>
+                    <p>Everything you need to master tech skills in one place</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                            <div class="icon-glow"></div>
+                        </div>
+                        <h3>Lightning Fast</h3>
+                        <p>Instant search results with smart filtering</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-download"></i>
+                            <div class="icon-glow"></div>
+                        </div>
+                        <h3>Direct Access</h3>
+                        <p>No registrations, just direct resource links</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                            <div class="icon-glow"></div>
+                        </div>
+                        <h3>Fully Responsive</h3>
+                        <p>Learn anywhere, on any device</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-heart"></i>
+                            <div class="icon-glow"></div>
+                        </div>
+                        <h3>Daily Updates</h3>
+                        <p>Fresh content added every day</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">
+                        <i class="fas fa-cogs"></i>
+                        <span>All Services</span>
+                    </div>
+                    <h2>Explore Our <span class="gradient-text gradient-3">Resource Library</span></h2>
+                    <p>Click any category to instantly discover amazing content</p>
+                </div>
+                <div class="services-grid" id="servicesGrid">
+                    <!-- Services will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="container">
+                <div class="search-wrapper">
+                    <div class="search-header">
+                        <i class="fas fa-search"></i>
+                        <h3>Search 50K+ Resources</h3>
+                    </div>
+                    <div class="search-container">
+                        <div class="search-input-wrapper">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" id="searchInput" placeholder="python, react, cyber security, ai..." value="python">
+                        </div>
+                        <div class="search-filters">
+                            <select id="categorySelect" class="category-select">
+                                <option value="all">📚 All Categories</option>
+                                <option value="python">🐍 Python</option>
+                                <option value="javascript">⚡ JavaScript</option>
+                                <option value="react">⚛️ React</option>
+                                <option value="ai">🧠 AI/ML</option>
+                                <option value="cyber">🛡️ Cyber Security</option>
+                                <option value="web">🌐 Web Dev</option>
+                            </select>
+                            <button class="search-btn" id="searchBtn">
+                                <span>Search</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Premium Banner -->
+        <div class="premium-banner" id="premiumBanner" style="display: none;">
+            <div class="premium-content">
+                <div class="premium-icon">
+                    <i class="fas fa-crown"></i>
+                    <div class="premium-pulse"></div>
+                </div>
+                <div class="premium-text">
+                    <h4>Premium Access Unlocked!</h4>
+                    <p>✅ Unlimited downloads | ✅ Direct links | ✅ Lifetime access</p>
+                </div>
+                <button class="premium-close" id="closePremiumBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results-section" id="resultsSection">
+            <div class="container">
+                <div class="results-header">
+                    <h3><i class="fas fa-list"></i> Search Results</h3>
+                    <div class="results-count" id="resultsCount"></div>
+                </div>
+                <div class="results-grid" id="resultsContainer">
+                    <div class="result-placeholder">
+                        <i class="fas fa-lock"></i>
+                        <p>Login to unlock premium resources</p>
+                        <button class="btn-primary small" id="placeholderLoginBtn">Get Premium Access</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Categories Showcase -->
+        <section class="categories-showcase">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">
+                        <i class="fas fa-th-large"></i>
+                        <span>Popular Topics</span>
+                    </div>
+                    <h2>Most <span class="gradient-text gradient-1">Popular Categories</span></h2>
+                    <p>Thousands of resources waiting for you</p>
+                </div>
+                <div class="categories-grid" id="categoriesGrid">
+                    <!-- Categories will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials-section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-tag">
+                        <i class="fas fa-comments"></i>
+                        <span>Success Stories</span>
+                    </div>
+                    <h2>What Our <span class="gradient-text gradient-2">Learners Say</span></h2>
+                </div>
+                <div class="testimonials-grid" id="testimonialsGrid">
+                    <!-- Testimonials will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter-section">
+            <div class="container">
+                <div class="newsletter-wrapper">
+                    <div class="newsletter-content">
+                        <div class="newsletter-icon">
+                            <i class="fas fa-envelope-open-text"></i>
+                        </div>
+                        <h3>Stay Updated</h3>
+                        <p>Get the latest resources and learning tips straight to your inbox</p>
+                        <div class="newsletter-form">
+                            <input type="email" placeholder="Enter your email">
+                            <button class="btn-primary">Subscribe <i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Aime Modox</span>
+                    </div>
+                    <p>Empowering developers worldwide with free, high-quality learning resources.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>Platform</h4>
+                        <a href="#">Home</a>
+                        <a href="challenges.html">Challenges</a>
+                        <a href="about.html">About Us</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>Resources</h4>
+                        <a href="#">All Courses</a>
+                        <a href="#">Popular Tags</a>
+                        <a href="#">Learning Paths</a>
+                    </div>
+                    <div class="link-group">
+                        <h4>Support</h4>
+                        <a href="#">FAQ</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Terms of Use</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Aime Modox — Made with <i class="fas fa-heart"></i> for the dev community</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-card">
+            <button class="modal-close" id="closeModalBtn">&times;</button>
+            <div class="modal-header">
+                <div class="modal-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <h2>Premium Access</h2>
+                <p>Unlock all resources & features</p>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="loginEmail" placeholder="Email address" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-key"></i>
+                        <input type="password" id="loginPassword" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="btn-primary full-width">
+                        <i class="fas fa-unlock-alt"></i>
+                        <span>Unlock Premium</span>
+                    </button>
+                </form>
+                <div class="login-hint">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>Hint: <strong>sohagteam</strong></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
