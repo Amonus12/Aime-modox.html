@@ -37,14 +37,26 @@
                     <i class="fas fa-home"></i>
                     <span>Home</span>
                 </a>
-                <a href="challenges.html" class="nav-link">
+                <!-- ✅ Library - تأكد من وجود library.html -->
+                <a href="library.html" class="nav-link" id="libraryLink">
+                    <i class="fas fa-book-open"></i>
+                    <span>Library</span>
+                </a>
+                <!-- ✅ Challenges - تأكد من وجود challenges.html -->
+                <a href="challenges.html" class="nav-link" id="challengesLink">
                     <i class="fas fa-trophy"></i>
                     <span>Challenges</span>
                     <span class="badge-new">🔥</span>
                 </a>
-                <a href="about.html" class="nav-link">
+                <!-- ✅ About - تأكد من وجود about.html -->
+                <a href="about.html" class="nav-link" id="aboutLink">
                     <i class="fas fa-user-circle"></i>
                     <span>About</span>
+                </a>
+                <!-- ✅ Feedback - تأكد من وجود feedback.html -->
+                <a href="feedback.html" class="nav-link" id="feedbackLink">
+                    <i class="fas fa-star"></i>
+                    <span>Feedback</span>
                 </a>
                 <button class="login-btn" id="loginNavBtn">
                     <i class="fas fa-crown"></i>
@@ -106,11 +118,11 @@
                         <span>Explore Resources</span>
                         <i class="fas fa-arrow-right"></i>
                     </button>
-                    <a href="challenges.html" class="btn-secondary">
+                    <button class="btn-secondary" id="heroChallengesBtn">
                         <i class="fas fa-trophy"></i>
                         <span>Join Challenges</span>
                         <i class="fas fa-fire"></i>
-                    </a>
+                    </button>
                 </div>
             </div>
             
@@ -134,7 +146,7 @@
             </div>
         </section>
 
-        <!-- Features Section -->
+        <!-- باقي sections كما هي... -->
         <section class="features-section">
             <div class="container">
                 <div class="section-header">
@@ -339,21 +351,21 @@
                 <div class="footer-links">
                     <div class="link-group">
                         <h4>Platform</h4>
-                        <a href="#">Home</a>
-                        <a href="challenges.html">Challenges</a>
-                        <a href="about.html">About Us</a>
+                        <a href="#" onclick="return false;">Home</a>
+                        <a href="challenges.html" onclick="return false;">Challenges</a>
+                        <a href="about.html" onclick="return false;">About Us</a>
                     </div>
                     <div class="link-group">
                         <h4>Resources</h4>
-                        <a href="#">All Courses</a>
-                        <a href="#">Popular Tags</a>
-                        <a href="#">Learning Paths</a>
+                        <a href="#" onclick="return false;">All Courses</a>
+                        <a href="#" onclick="return false;">Popular Tags</a>
+                        <a href="#" onclick="return false;">Learning Paths</a>
                     </div>
                     <div class="link-group">
                         <h4>Support</h4>
-                        <a href="#">FAQ</a>
-                        <a href="#">Contact</a>
-                        <a href="#">Terms of Use</a>
+                        <a href="#" onclick="return false;">FAQ</a>
+                        <a href="#" onclick="return false;">Contact</a>
+                        <a href="#" onclick="return false;">Terms of Use</a>
                     </div>
                 </div>
             </div>
@@ -398,5 +410,67 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        // ✅ كود لمنع الشاشة البيضاء والتعامل مع الروابط غير الموجودة
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // التحقق من وجود الصفحات قبل الانتقال إليها
+            async function checkPageExists(url) {
+                try {
+                    const response = await fetch(url, { method: 'HEAD' });
+                    return response.ok;
+                } catch(e) {
+                    return false;
+                }
+            }
+            
+            // تعامل مع جميع الروابط
+            const links = document.querySelectorAll('a[href]');
+            links.forEach(link => {
+                const href = link.getAttribute('href');
+                
+                // تجاهل الروابط التي تبدأ بـ # أو javascript
+                if (href && !href.startsWith('#') && !href.startsWith('javascript:')) {
+                    link.addEventListener('click', function(e) {
+                        // إذا كان الرابط لا يشير إلى صفحة موجودة والملف ليس index.html
+                        if (href !== 'index.html' && href !== '#' && !href.endsWith('.html')) {
+                            e.preventDefault();
+                            alert(`⚠️ صفحة "${href}" غير موجودة حالياً.\nسيتم إضافتها قريباً!`);
+                        }
+                    });
+                }
+            });
+            
+            // زر Explore Resources
+            const exploreBtn = document.getElementById('heroSearchBtn');
+            if (exploreBtn) {
+                exploreBtn.addEventListener('click', function() {
+                    const searchSection = document.querySelector('.search-section');
+                    if (searchSection) {
+                        searchSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            }
+            
+            // زر Join Challenges
+            const challengesBtn = document.getElementById('heroChallengesBtn');
+            if (challengesBtn) {
+                challengesBtn.addEventListener('click', function() {
+                    // التحقق من وجود ملف challenges.html
+                    fetch('challenges.html', { method: 'HEAD' })
+                        .then(response => {
+                            if (response.ok) {
+                                window.location.href = 'challenges.html';
+                            } else {
+                                alert('🏆 قريباً! صفحة التحديات قيد الإعداد.');
+                            }
+                        })
+                        .catch(() => {
+                            alert('🏆 قريباً! صفحة التحديات قيد الإعداد.');
+                        });
+                });
+            }
+        });
+    </script>
 </body>
 </html>

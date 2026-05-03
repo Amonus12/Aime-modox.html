@@ -1453,6 +1453,17 @@ body:hover .custom-cursor-dot {
     font-size: 0.85rem;
     color: var(--text-secondary);
 }
+.btn-library {
+    background: linear-gradient(95deg, #8b5cf6, #3b82f6);
+    padding: 0.6rem 1.2rem;
+    border-radius: 40px;
+    font-weight: 600;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+.btn-library:hover {
+    background: linear-gradient(95deg, #a78bfa, #60a5fa);
+    transform: scale(1.02);
+}
 
 .login-hint strong {
     color: var(--secondary);

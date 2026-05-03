@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aime Modox | استبيان رأي المستخدمين</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        /* زر العودة */
+        .back-home {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 40px;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 100;
+            transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .back-home:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateX(-5px);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* الهيدر */
+        .survey-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .survey-header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .survey-header p {
+            color: #ccc;
+            font-size: 1.1rem;
+        }
+
+        .emoji {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        /* نموذج الاستبيان */
+        .survey-form {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .form-group label i {
+            color: #4ecdc4;
+            margin-left: 8px;
+        }
+
+        .required {
+            color: #ff6b6b;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 15px;
+            font-size: 1rem;
+            color: white;
+            font-family: 'Cairo', sans-serif;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #4ecdc4;
+            background: rgba(255,255,255,0.15);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* تقييم النجوم */
+        .rating-stars {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .rating-stars input {
+            display: none;
+        }
+
+        .rating-stars label {
+            font-size: 2rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-bottom: 0;
+        }
+
+        .rating-stars label:hover,
+        .rating-stars label:hover ~ label,
+        .rating-stars input:checked ~ label {
+            color: #ffc107;
+        }
+
+        /* خيارات سريعة */
+        .options-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .option-btn {
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .option-btn:hover {
+            background: rgba(78,205,196,0.3);
+            border-color: #4ecdc4;
+        }
+
+        .option-btn.selected {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            border-color: transparent;
+        }
+
+        .option-btn i {
+            margin-left: 8px;
+        }
+
+        /* زر الإرسال */
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 25px rgba(255,107,107,0.5);
+        }
+
+        /* رسالة النجاح */
+        .success-message {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #4ecdc4;
+            color: #1a1a2e;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* آراء سابقة */
+        .testimonials {
+            margin-top: 50px;
+        }
+
+        .testimonials h3 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .testimonial-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: #ccc;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-author {
+            color: #4ecdc4;
+            font-weight: 600;
+        }
+
+        .testimonial-stars {
+            color: #ffc107;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .survey-form {
+                padding: 25px;
+            }
+            .survey-header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<a href="index.html" class="back-home">
+    <i class="fas fa-home"></i>
+    العودة للرئيسية
+</a>
+
+<div class="container">
+    <div class="survey-header">
+        <div class="emoji">
+            <i class="fas fa-smile-wink"></i>
+            <i class="fas fa-heart" style="color: #ff6b6b;"></i>
+            <i class="fas fa-star" style="color: #ffc107;"></i>
+        </div>
+        <h1>رأيك يهمنا!</h1>
+        <p>شاركنا تجربتك مع Aime Modox وساعدنا في تحسين المنصة</p>
+    </div>
+
+    <form class="survey-form" id="surveyForm">
+        <!-- الاسم -->
+        <div class="form-group">
+            <label><i class="fas fa-user"></i> الاسم <span class="required">*</span></label>
+            <input type="text" id="userName" placeholder="أدخل اسمك" required>
+        </div>
+
+        <!-- البريد الإلكتروني -->
+        <div class="form-group">
+            <label><i class="fas fa-envelope"></i> البريد الإلكتروني</label>
+            <input type="email" id="userEmail" placeholder="example@email.com">
+        </div>
+
+        <!-- تقييم النجوم -->
+        <div class="form-group">
+            <label><i class="fas fa-star"></i> تقييمك للمنصة <span class="required">*</span></label>
+            <div class="rating-stars" id="ratingStars">
+                <input type="radio" name="rating" value="5" id="star5"><label for="star5">★</label>
+                <input type="radio" name="rating" value="4" id="star4"><label for="star4">★</label>
+                <input type="radio" name="rating" value="3" id="star3"><label for="star3">★</label>
+                <input type="radio" name="rating" value="2" id="star2"><label for="star2">★</label>
+                <input type="radio" name="rating" value="1" id="star1"><label for="star1">★</label>
+            </div>
+        </div>
+
+        <!-- ما يعجبك؟ -->
+        <div class="form-group">
+            <label><i class="fas fa-heart"></i> ما أكثر شيء أعجبك؟</label>
+            <div class="options-group" id="likesOptions">
+                <div class="option-btn" data-value="الكتب المجانية"><i class="fas fa-book"></i> الكتب المجانية</div>
+                <div class="option-btn" data-value="التحديات"><i class="fas fa-trophy"></i> التحديات</div>
+                <div class="option-btn" data-value="التصميم"><i class="fas fa-palette"></i> التصميم</div>
+                <div class="option-btn" data-value="سهولة الاستخدام"><i class="fas fa-hand-peace"></i> سهولة الاستخدام</div>
+                <div class="option-btn" data-value="المحتوى"><i class="fas fa-file-alt"></i> المحتوى</div>
+            </div>
+        </div>
+
+        <!-- اقتراحات للتحسين -->
+        <div class="form-group">
+            <label><i class="fas fa-lightbulb"></i> اقتراحاتك للتحسين</label>
+            <textarea rows="4" id="suggestions" placeholder="اكتب اقتراحاتك هنا..."></textarea>
+        </div>
+
+        <!-- تجربة عامة -->
+        <div class="form-group">
+            <label><i class="fas fa-comment-dots"></i> تجربتك العامة مع المنصة <span class="required">*</span></label>
+            <textarea rows="3" id="experience" placeholder="شاركنا تجربتك..." required></textarea>
+        </div>
+
+        <!-- هل توصي بالمنصة؟ -->
+        <div class="form-group">
+            <label><i class="fas fa-thumbs-up"></i> هل توصي أصدقائك بـ Aime Modox؟</label>
+            <select id="recommend">
+                <option value="نعم بالتأكيد">نعم بالتأكيد 👍</option>
+                <option value="نعم">نعم 👌</option>
+                <option value="ربما">ربما 🤔</option>
+                <option value="لا">لا 👎</option>
+            </select>
+        </div>
+
+        <button type="submit" class="submit-btn">
+            <i class="fas fa-paper-plane"></i>
+            إرسال رأيك
+            <i class="fas fa-heart"></i>
+        </button>
+    </form>
+
+    <!-- آراء سابقة -->
+    <div class="testimonials">
+        <h3><i class="fas fa-comments"></i> آراء المستخدمين</h3>
+        <div class="testimonials-grid" id="testimonialsGrid">
+            <!-- سيتم إضافة الآراء هنا -->
+        </div>
+    </div>
+</div>
+
+<div class="success-message" id="successMessage">
+    <i class="fas fa-check-circle"></i>
+    <span>شكراً لك! تم استلام رأيك بنجاح 💙</span>
+</div>
+
+<script>
+    // تحميل الآراء المخزنة
+    let feedbacks = JSON.parse(localStorage.getItem('userFeedbacks')) || [];
+
+    // الآراء الافتراضية
+    const defaultFeedbacks = [
+        { name: "أحمد محمد", rating: 5, experience: "منصة رائعة! الكتب مفيدة جداً والتحديات ممتعة", recommend: "نعم بالتأكيد", likes: "الكتب المجانية" },
+        { name: "سارة خالد", rating: 4, experience: "تصميم جميل ومحتوى متنوع. أتمنى إضافة المزيد من الكتب", recommend: "نعم", likes: "التصميم" },
+        { name: "محمد علي", rating: 5, experience: "أفضل منصة تعليمية استخدمتها. شكراً لكم!", recommend: "نعم بالتأكيد", likes: "التحديات" }
+    ];
+
+    // إضافة الآراء الافتراضية إذا كانت القائمة فارغة
+    if (feedbacks.length === 0) {
+        feedbacks = defaultFeedbacks;
+        localStorage.setItem('userFeedbacks', JSON.stringify(feedbacks));
+    }
+
+    // اختيار خيارات متعددة
+    const options = document.querySelectorAll('.option-btn');
+    let selectedLikes = [];
+
+    options.forEach(opt => {
+        opt.addEventListener('click', function() {
+            this.classList.toggle('selected');
+            const value = this.dataset.value;
+            if (selectedLikes.includes(value)) {
+                selectedLikes = selectedLikes.filter(v => v !== value);
+            } else {
+                selectedLikes.push(value);
+            }
+        });
+    });
+
+    // عرض الآراء
+    function displayTestimonials() {
+        const grid = document.getElementById('testimonialsGrid');
+        grid.innerHTML = '';
+        
+        // عرض آخر 6 آراء فقط
+        const recentFeedbacks = feedbacks.slice(-6).reverse();
+        
+        recentFeedbacks.forEach(fb => {
+            const card = document.createElement('div');
+            card.className = 'testimonial-card';
+            
+            let stars = '';
+            for (let i = 0; i < fb.rating; i++) {
+                stars += '★';
+            }
+            for (let i = fb.rating; i < 5; i++) {
+                stars += '☆';
+            }
+            
+            card.innerHTML = `
+                <div class="testimonial-stars">${stars}</div>
+                <div class="testimonial-text">"${fb.experience.substring(0, 100)}${fb.experience.length > 100 ? '...' : ''}"</div>
+                <div class="testimonial-author">- ${fb.name}</div>
+                ${fb.likes ? `<div style="font-size: 0.75rem; color: #888; margin-top: 8px;"><i class="fas fa-heart" style="color: #ff6b6b;"></i> ${fb.likes}</div>` : ''}
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    // إرسال النموذج
+    document.getElementById('surveyForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('userName').value.trim();
+        const email = document.getElementById('userEmail').value;
+        const rating = document.querySelector('input[name="rating"]:checked');
+        const experience = document.getElementById('experience').value.trim();
+        const suggestions = document.getElementById('suggestions').value;
+        const recommend = document.getElementById('recommend').value;
+        
+        if (!name) {
+            alert('الرجاء إدخال اسمك');
+            return;
+        }
+        
+        if (!rating) {
+            alert('الرجاء تقييم المنصة');
+            return;
+        }
+        
+        if (!experience) {
+            alert('الرجاء كتابة تجربتك');
+            return;
+        }
+        
+        const feedback = {
+            name: name,
+            email: email || 'غير مذكور',
+            rating: parseInt(rating.value),
+            experience: experience,
+            suggestions: suggestions,
+            recommend: recommend,
+            likes: selectedLikes.join(', '),
+            date: new Date().toLocaleString('ar-EG')
+        };
+        
+        // حفظ الرأي
+        feedbacks.push(feedback);
+        localStorage.setItem('userFeedbacks', JSON.stringify(feedbacks));
+        
+        // عرض رسالة نجاح
+        const msg = document.getElementById('successMessage');
+        msg.style.display = 'flex';
+        
+        // إعادة تعيين النموذج
+        this.reset();
+        selectedLikes = [];
+        options.forEach(opt => opt.classList.remove('selected'));
+        
+        // إخفاء الرسالة بعد 3 ثواني
+        setTimeout(() => {
+            msg.style.display = 'none';
+        }, 3000);
+        
+        // تحديث عرض الآراء
+        displayTestimonials();
+        
+        // تمرير إلى أعلى الصفحة
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // عرض الآراء عند تحميل الصفحة
+    displayTestimonials();
+</script>
+</body>
+</html>
